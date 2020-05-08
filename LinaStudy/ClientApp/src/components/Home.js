@@ -1,22 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Home = props => (
   <div>
-    <h1>Hello, world!</h1>
-    <p>Welcome to your new single-page application, built with:</p>
-    <ul>
-      <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-      <li><a href='https://facebook.github.io/react/'>React</a> and <a href='https://redux.js.org/'>Redux</a> for client-side code</li>
-      <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-    </ul>
-    <p>To help you get started, we've also set up:</p>
-    <ul>
-      <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-      <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-      <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-    </ul>
-    <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
+   <div className="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 className="display-4">Модна хатка</h1>
+      <p className="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+    </div>
+    <div className="card-deck mb-3 text-center">
+        <div className="card mb-4 box-shadow">
+          <div className="card-header">
+            <h4 className="my-0 font-weight-normal">Free</h4>
+          </div>
+          <div className="card-body">
+            <h2 className="card-title pricing-card-title">Для мужчин</h2>
+            <img style={{objectFit: "cover"}} src="https://i.pinimg.com/originals/cb/a6/37/cba6376e425d961bccf7ea1aab464cfb.jpg" width="100%" height="150px"/>
+            {/* <button type="button" className="btn btn-lg btn-block btn-primary mt-1">Прейти к списку</button> */}
+            <Link to="/man-clothes" className="btn btn-lg btn-block btn-primary mt-1">Прейти к списку</Link>
+          </div>
+        </div>
+        <div className="card mb-4 box-shadow">
+          <div className="card-header">
+            <h4 className="my-0 font-weight-normal">Pro</h4>
+          </div>
+          <div className="card-body">
+            <h2 className="card-title pricing-card-title">Для женщин</h2>
+            <img src="https://image.freepik.com/free-photo/_143465-14.jpg" width="100%" height="150px" />
+            <button style={{objectFit: "cover"}} type="button" className="mt-1 btn btn-lg btn-block btn-primary">Прейти к списку</button>
+          </div>
+        </div>
+        <div className="card mb-4 box-shadow">
+          <div className="card-header">
+            <h4 className="my-0 font-weight-normal">Enterprise</h4>
+          </div>
+          <div className="card-body">
+            <h2 className="card-title pricing-card-title">Для детей</h2>
+            <img src="https://www.klaschoolsdoral.com/wp-content/uploads/2018/08/getting-your-child-ready-for-back-to-school-865x577.jpeg" width="100%" height="150px" />
+            <button style={{objectFit: "cover"}} type="button" className="mt-1 btn btn-lg btn-block btn-primary">Прейти к списку</button>
+          </div>
+        </div>
+      </div>
   </div>
 );
 

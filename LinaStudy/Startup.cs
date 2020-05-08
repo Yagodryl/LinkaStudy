@@ -1,7 +1,9 @@
+using LinaStudy.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +23,10 @@ namespace LinaStudy
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+
+            services.AddDbContext<EFDbContext>
+                (options => options.UseSqlite("Data Source=ClothesDB.sqlite"));
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -29,7 +35,7 @@ namespace LinaStudy
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, EFDbContext dbContext, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -39,6 +45,8 @@ namespace LinaStudy
             {
                 app.UseExceptionHandler("/Error");
             }
+            dbContext.Database.EnsureCreated();
+
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
