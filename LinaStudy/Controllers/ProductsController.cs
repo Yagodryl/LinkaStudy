@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LinaStudy.DAL;
+using LinaStudy.DAL.Entities;
 using LinaStudy.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,40 @@ namespace LinaStudy.Controllers
                     Image = (item.Images.ToArray())[0].ImageUrl
                 }) ;
             }
+            return Ok(model);
+        }
+
+        [HttpPost("add-product")]
+        public IActionResult AddProduct([FromBody] AddProductModel model)
+        {
+
+            var images = new List<Image>();
+            images.Add(new Image { ImageUrl = model.Image });
+
+            var product = new DAL.Entities.Product
+            {
+                Name = model.Name,
+                Price = decimal.Parse(model.Price),
+                Description = model.Description,
+                SexId = int.Parse(model.Sex),
+                TypeId = int.Parse(model.Type),
+                Images = images
+            };
+            _context.Products.Add(product);
+            _context.SaveChanges();
+
+
+
+            return Ok();
+        }
+
+        [HttpGet("info-add-product")]
+        public IActionResult InfoAddProduct()
+        {
+            InfoAddProductModel model = new InfoAddProductModel();
+            model.Types = _context.Types.Select(x => x).ToList();
+            model.Sexes = _context.Sexes.Select(x => x).ToList(); 
+
             return Ok(model);
         }
     }
