@@ -29,7 +29,7 @@ class AddProduct extends Component {
 
     render() { 
 
-        const {name, description,price,image,type,sex} = this.state;
+        const {name, description,price,image} = this.state;
         const {sexes = [], types = []} = this.props.infoAddProductData;
 
         const listSexes = sexes.map(item=>{

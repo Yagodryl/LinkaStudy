@@ -25,6 +25,8 @@ namespace LinaStudy.Controllers
         [HttpGet ("get-man-producs")]
         public IActionResult GetManProducts()
         {
+
+
             var model = new List<ManProductModel>();
             var products = _context.Products
                 .Include(x => x.Images)
@@ -40,7 +42,19 @@ namespace LinaStudy.Controllers
                     Image = (item.Images.ToArray())[0].ImageUrl
                 }) ;
             }
+            Random rnd = new Random();
+
+            int a = rnd.Next(100);
+            if (a <= 66)
+            {
+
             return Ok(model);
+            }
+            else
+            {
+                return BadRequest("!!!Error!!!");
+
+            }
         }
 
         [HttpPost("add-product")]

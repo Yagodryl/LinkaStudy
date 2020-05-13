@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ProductItem from "./ProductItem";
 import { connect } from 'react-redux';
 import * as ProductsAction from "./reducer";
-
+import Loader from "../Helpers/Loader";
 
 class ManProductsPage extends Component {
     state = {  }
@@ -13,19 +13,15 @@ class ManProductsPage extends Component {
     }
 
     render() { 
-        const {manProducts=[]} = this.props;
+
+        const {manProducts=[], loading} = this.props;
         const listManProducts = manProducts.map((item)=>{
             return (
                 <ProductItem title = {item.title} description={item.description} img={item.image} key={item.id} />
             )
         })
         console.log(this.props.manProducts) 
-        return ( 
-            <div className="row">
-                {listManProducts}
-                
-
-            </div>
+        return ( (loading)?<Loader/>:(<div className="row">{listManProducts}</div>)
         );
     }
 }
@@ -35,7 +31,8 @@ class ManProductsPage extends Component {
 const mapStateToProps = ({listProduct}) => {
     console.log("dddddddd", listProduct)
     return{
-        manProducts: listProduct.listManProducts
+        manProducts: listProduct.listManProducts,
+        loading: listProduct.listManLoading
     }
 }
 
